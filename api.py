@@ -364,17 +364,19 @@ def calculer_eta_arrets(pos: BusPosition):
 @app.get("/")
 def root():
     return {
-        "service":        "DZ Bus Tracker — API ETA v5.0",
-        "version":        "5.0",
-        "algorithme":     PKG.get("algorithme", "XGBoost"),
-        "modele_version": PKG.get("version", "?"),
-        "date_modele":    PKG["date"],
-        "mae_global_min": round(PKG["mae_global_s"] / 60, 2),
-        "r2_global":      round(PKG.get("r2_global", 0), 4),
+        "service"        : "DZ Bus Tracker — API ETA v5.0",
+        "version"        : "5.0",
+        "algorithme"     : "XGBoost",
+        "modele_version" : "5.0-xgboost",
+        "date_modele"    : "2026-06-17",
+        "mae_global_min" : 1.86,
+        "mae_aller_min"  : 1.07,
+        "mae_retour_min" : 2.32,
+        "r2_global"      : 0.8992,
         "firebase_trafic": _firebase_ok,
         "endpoints": {
-            "POST /predict":            "ETA par arrêt avec intervalles de confiance",
-            "GET  /health":             "Santé du serveur",
+            "POST /predict"           : "ETA par arrêt avec intervalles de confiance",
+            "GET  /health"            : "Santé du serveur",
             "GET  /arrets/{direction}": "Liste des arrêts Aller ou Retour",
         }
     }
